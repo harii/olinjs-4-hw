@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  h1= title
+  p| Compose New Tweet:
+  form(method='post', action="/tweets/"+title, id="zaform")
+    input(name=title, id="newTweet")
+    button(type="submit") Tweet!
+  br
+  h2 Latest Tweets
+  div(id="allTweets") 
+    include _twitPartial.jade
+    each tweet, i in tweets
+      div
+        =tweet.ownerRef.name
+        div
+          =tweet.message + " ||  " + tweet.created
+      br
+
+
